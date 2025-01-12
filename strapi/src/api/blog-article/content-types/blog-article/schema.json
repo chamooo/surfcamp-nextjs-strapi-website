@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_articles",
+  "info": {
+    "singularName": "blog-article",
+    "pluralName": "blog-articles",
+    "displayName": "Blog Article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "regex": "^[a-z](-?[a-z])*$",
+      "unique": true
+    },
+    "author": {
+      "type": "enumeration",
+      "enum": [
+        "Niklas Fischer",
+        "John Doe",
+        "Alisha Dekster"
+      ],
+      "default": "Niklas Fischer"
+    },
+    "isHighlightArticle": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "articleContent": {
+      "type": "dynamiczone",
+      "components": [
+        "blog-article.headline",
+        "blog-article.text-with-image",
+        "blog-article.paragraph",
+        "blog-article.landscape-media"
+      ]
+    }
+  }
+}

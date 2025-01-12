@@ -1,8 +1,9 @@
 import HighlightArticle from "../_components/Blog/HighlightArticle";
 import NewsletterSubscribeForm from "../_components/Blog/NewsletterSubscribeForm";
 import FeaturedArticles from "../_components/FeaturedArticles/FeaturedArticles";
+import { getBlogArticlesData } from "../utils/strapi.utils";
 
-export default function Page() {
+export default async function Page() {
     const highlightArticleData = {
         highlight: "3 tips for a super fast takeoff",
         excerpt: `Improving your take-off phase in surfing is a fundamental step toward riding waves with more confidence and style.
@@ -11,56 +12,20 @@ export default function Page() {
         image: "/assets/hero-experience.png",
     };
 
-    const featuredArticles = [
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-        {
-            title: "surfboard shaping and design behind the scenes of crafting the perfect board ",
-            image: "/assets/hero-home.png",
-            date: "Monday, June 05, 2023",
-            price: "580",
-            slug: "slug",
-        },
-    ];
+    const { articles: featuredArticles, pagination } =
+        await getBlogArticlesData();
 
     return (
         <main className="blog-page">
             <HighlightArticle data={highlightArticleData} />
             <NewsletterSubscribeForm />
-            <FeaturedArticles articles={featuredArticles} />
+            <FeaturedArticles
+                initialArticles={featuredArticles}
+                initialPagination={pagination}
+                headline="Featured Articles"
+            />
         </main>
     );
 }
+
+export const revalidate = 300;

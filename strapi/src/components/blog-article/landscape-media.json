@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blog_article_landscape_medias",
+  "info": {
+    "displayName": "LandscapeMedia"
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "allowedTypes": [
+        "videos",
+        "files",
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "caption": {
+      "type": "string"
+    }
+  }
+}

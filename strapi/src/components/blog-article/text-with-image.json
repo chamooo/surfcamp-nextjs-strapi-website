@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_blog_article_text_with_images",
+  "info": {
+    "displayName": "TextWithImage"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "isLandscapeOrientation": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "showImageOnRight": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "imageCaption": {
+      "type": "string"
+    }
+  }
+}

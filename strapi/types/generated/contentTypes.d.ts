@@ -369,6 +369,55 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBlogArticleBlogArticle extends Struct.CollectionTypeSchema {
+  collectionName: 'blog_articles';
+  info: {
+    description: '';
+    displayName: 'Blog Article';
+    pluralName: 'blog-articles';
+    singularName: 'blog-article';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articleContent: Schema.Attribute.DynamicZone<
+      [
+        'blog-article.headline',
+        'blog-article.text-with-image',
+        'blog-article.paragraph',
+        'blog-article.landscape-media',
+      ]
+    >;
+    author: Schema.Attribute.Enumeration<
+      ['Niklas Fischer', 'John Doe', 'Alisha Dekster']
+    > &
+      Schema.Attribute.DefaultTo<'Niklas Fischer'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text;
+    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isHighlightArticle: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-article.blog-article'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiInfoBlockInfoBlock extends Struct.CollectionTypeSchema {
   collectionName: 'info_blocks';
   info: {
@@ -977,6 +1026,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::blog-article.blog-article': ApiBlogArticleBlogArticle;
       'api::info-block.info-block': ApiInfoBlockInfoBlock;
       'api::info-blocks-experience.info-blocks-experience': ApiInfoBlocksExperienceInfoBlocksExperience;
       'api::info-blocks-landing.info-blocks-landing': ApiInfoBlocksLandingInfoBlocksLanding;
