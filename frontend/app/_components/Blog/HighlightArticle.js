@@ -1,11 +1,12 @@
+import { processedImage } from "@/app/utils/strapi.utils";
 import Link from "next/link";
 
 const HighlightArticle = ({ data }) => {
-    const { highlight, excerpt, image, slug } = data;
+    const { headline, excerpt, slug, image } = data;
     return (
         <article className="highlight-article">
             <div className="highlight-article__info">
-                <h1 className="h3">{highlight}</h1>
+                <h1 className="h3">{headline}</h1>
                 <p className="copy">{excerpt}</p>
                 <Link
                     className="btn btn--turquoise btn--medium"
@@ -14,7 +15,11 @@ const HighlightArticle = ({ data }) => {
                     Read more
                 </Link>
             </div>
-            <img src={image} alt="" className="highlight-article__image" />
+            <img
+                src={image.url}
+                alt={image.alt || headline}
+                className="highlight-article__image"
+            />
         </article>
     );
 };

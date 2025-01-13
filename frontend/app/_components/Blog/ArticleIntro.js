@@ -1,10 +1,12 @@
 import { formatDate } from "@/app/utils/helpers.utils";
 
 const ArticleIntro = ({ article }) => {
-    const { headline, excerpt, image, author, publishedAt } = article;
+    const { headline, makeHeroTextWhite, image, author, publishedAt } = article;
 
     return (
-        <section className="article-intro">
+        <section
+            className={`article-intro ${makeHeroTextWhite ? "hero--dark" : ""}`}
+        >
             <div className="article-intro__background">
                 <img src={image.url} alt={image.alt} />
             </div>

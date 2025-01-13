@@ -408,6 +408,9 @@ export interface ApiBlogArticleBlogArticle extends Struct.CollectionTypeSchema {
       'api::blog-article.blog-article'
     > &
       Schema.Attribute.Private;
+    makeHeroTextWhite: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String &
       Schema.Attribute.Required &

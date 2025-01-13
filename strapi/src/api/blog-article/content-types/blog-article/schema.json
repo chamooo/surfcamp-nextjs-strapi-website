@@ -55,6 +55,11 @@
         "blog-article.paragraph",
         "blog-article.landscape-media"
       ]
+    },
+    "makeHeroTextWhite": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

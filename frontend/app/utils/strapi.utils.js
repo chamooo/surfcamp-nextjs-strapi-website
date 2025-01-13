@@ -74,3 +74,11 @@ export async function fetchArticleBySlug(slug) {
     const data = await fetchDataFromStrapi(endpoint);
     return data.data[0];
 }
+
+export function getHighlightArticle(articles) {
+    return articles.find((article) => article.isHighlightArticle);
+}
+
+export function getFeaturedArticles(articles) {
+    return articles.filter((article) => !article.isHighlightArticle);
+}
